@@ -1,0 +1,15 @@
+# http://localhost:7055/health
+plumber_local:
+  host: localhost
+  port: 7055
+  path:
+  method_plumber: health
+  scheme: http
+
+# http://localhost/paysystem/healthcheck
+plumber_paysystem:
+  host: localhost
+  port:
+  path: paysystem
+  method_plumber: healthcheck
+  scheme: http

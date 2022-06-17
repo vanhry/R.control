@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+  web1:
+    image: my/image
+
+    networks:
+      - network
+    expose:
+      - 3838
+  web2:
+    image: my/image
+
+    networks:
+      - network
+    expose:
+      - 3838
+
+  web3:
+    image: my/image
+
+    networks:
+      - network
+    expose:
+      - 3838
+
+# use already created network
+networks:
+  network:
+    external: true
