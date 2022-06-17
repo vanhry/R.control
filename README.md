@@ -7,14 +7,15 @@
 
 <!-- badges: end -->
 
-The goal of plumber.control is to …
+The goal of plumber.control is to control all of your R plumber
+(actually any http based) services in one place.
 
 ## Installation
 
 Development version
 
 ``` r
-remotes::install_github("plumber.control")
+remotes::install_github("vanhry/plumber.control")
 ```
 
 ``` r
@@ -65,7 +66,15 @@ data
 #> 21 plumber_paysystem    404 http://localhost/paysystem/healthcheck  FALSE
 ```
 
-Buld Docker
+Also it’s possible to use shiny application with:
+
+``` r
+plumber.control::run_app()
+```
+
+![Shiny app screen](inst/shiny_app_image.png)
+
+Build Docker
 
 ``` shell
 docker build . -t user/plumbercontrol_app -f Dockerfile.min
