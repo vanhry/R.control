@@ -8,10 +8,6 @@ test_that("read plumbers works", {
     read_plumbers("non_existfile.txt"),
     "`file` doesn't exist"
   )
-  expect_true(
-    inherits(read_plumbers("/home/hrychaniuk/projects/wrsa/test_service.yml"),
-    "list")
-  )
 })
 
 test_that("create plumber table", {
