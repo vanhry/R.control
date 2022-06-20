@@ -8,3 +8,4 @@ $run_dev.*
 ^Dockerfile$
 ^Dockerfile\.min$
 ^\.github$
+^LICENSE\.md$

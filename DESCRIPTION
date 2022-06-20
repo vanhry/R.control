@@ -7,7 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "vanhry@gmail.com")
 Description: This package provides the functionality for managing R plumber services
-License: What license is it under?
+License: MIT + file LICENSE
 Imports: 
     config (>= 0.3.1),
     golem (>= 0.3.2),
