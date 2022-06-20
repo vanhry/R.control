@@ -72,7 +72,7 @@ single_query_plumber <- function(id, host=NULL, port=NULL, path=NULL, method_plu
       result = T
     ))
   }, error=function(e) {
-    logger::log_error(as.character(e))
+
     return(rlang::list2(
       id = id,
       status = "404",
