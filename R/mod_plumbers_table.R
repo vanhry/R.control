@@ -46,9 +46,9 @@ mod_plumbers_table_server <- function(id){
       output$plumbers_table <- DT::renderDataTable({
         # add colors to Status
         services$Status <- as.character(services$Status) %>%
-          purrr::map_chr(., ~ ifelse(startsWith(.,"2"),
-                                     as.character(shiny::span(.,style='color:green')),
-                                     as.character(shiny::span(.,style='color:red'))))
+          purrr::map_chr( ~ ifelse(startsWith(.x,"2"),
+                                     as.character(shiny::span(.x,style='color:green')),
+                                     as.character(shiny::span(.x,style='color:red'))))
         # add links to URL
         services$URL <- purrr::map_chr(services$URL,
                                        ~ paste0("<a href='",.,"'>",.,"</a>"))
