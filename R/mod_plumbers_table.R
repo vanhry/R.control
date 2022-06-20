@@ -12,7 +12,8 @@ mod_plumbers_table_ui <- function(id){
   tagList(
     fluidRow(
     column(4, actionButton(ns("refresh"), "Refresh table")),
-    column(4, fileInput(ns("yaml_file"), NULL, accept=c(".yml",".yaml"),placeholder = "Upload yaml"))
+    column(4, fileInput(ns("yaml_file"), NULL, accept=c(".yml",".yaml"),
+                        placeholder = "Upload yaml"))
     ),
     hr(),
     DT::dataTableOutput(ns("plumbers_table"))
@@ -42,7 +43,6 @@ mod_plumbers_table_server <- function(id){
       if (is.null(services))
         return()
 
-      print('here')
       output$plumbers_table <- DT::renderDataTable({
         # add colors to Status
         services$Status <- as.character(services$Status) %>%
@@ -50,7 +50,8 @@ mod_plumbers_table_server <- function(id){
                                      as.character(shiny::span(.,style='color:green')),
                                      as.character(shiny::span(.,style='color:red'))))
         # add links to URL
-        services$URL <- purrr::map_chr(services$URL, ~ paste0("<a href='",.,"'>",.,"</a>"))
+        services$URL <- purrr::map_chr(services$URL,
+                                       ~ paste0("<a href='",.,"'>",.,"</a>"))
         DT::datatable(services %>% dplyr::select(-c("result")),
                       escape = FALSE,
                       selection = "none",

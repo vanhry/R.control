@@ -1,4 +1,3 @@
-print(getwd())
 
 test_that("read plumbers works", {
   expect_error(
@@ -27,14 +26,15 @@ test_that("create plumber table", {
 
   expect_true(
     inherits(
-      create_table_plumber(system.file("plumber_services.yaml",package="plumber.control")),
+      create_table_plumber(system.file("plumber_services.yaml", package="plumber.control")),
       "data.frame"
     )
   )
 
   expect_error(
     create_table_plumber(system.file("wrongfile2.yaml",package="plumber.control")),
-    paste("You are not allowed to use another names than", paste0(getOption("allowed_names"),collapse = ","))
+    paste("You are not allowed to use another names than",
+          paste0(getOption("allowed_names"),collapse = ","))
   )
 
   expect_error(

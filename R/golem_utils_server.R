@@ -110,7 +110,8 @@ create_table_plumber <- function(file, is.shiny=F) {
   # check names of yaml
   if (!all(names(yaml_df) %in% getOption("allowed_names"))) {
     if (isFALSE(is.shiny)) {
-      stop(paste("You are not allowed to use another names than", paste0(getOption("allowed_names"),collapse = ",")))
+      stop(paste("You are not allowed to use another names than",
+                 paste0(getOption("allowed_names"),collapse = ",")))
     } else {
       showModal(modalDialog(
         "Yaml file is invalid",
@@ -127,7 +128,7 @@ create_table_plumber <- function(file, is.shiny=F) {
   res.df <- do.call(rbind.data.frame, params_plumbers)
 
   # change colnames
-  colnames(res.df) <- c("id" = "Service","status" = "Status", "url" = "URL", "result" = "result")
+  colnames(res.df) <- c("Service","Status", "URL", "result")
 
   return(res.df)
 }

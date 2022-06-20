@@ -5,6 +5,8 @@
 
 <!-- badges: start -->
 
+[![R build
+status](https://github.com/vanhry/plumber.control/workflows/R-CMD-check/badge.svg)](https://github.com/vanhry/plumber.control/actions)
 <!-- badges: end -->
 
 The goal of plumber.control is to control all of your R plumber
@@ -79,3 +81,6 @@ Build Docker
 ``` shell
 docker build . -t user/plumbercontrol_app -f Dockerfile.min
 ```
+
+Project was created using [golem](https://github.com/ThinkR-open/golem)
+package
