@@ -1,5 +1,7 @@
 
-#' Read yaml of plumbers
+#' @title read_plumbers
+#' @name read_plumbers
+#' @description Read yaml of plumbers
 #' @param file location of description of plumber services
 #'
 #'
@@ -17,7 +19,9 @@ read_plumbers <- function(file) {
 }
 
 
-#' Perform the single plumber service check
+#' @title single_query_plumber
+#' @name single_query_plumber
+#' @description Perform the single plumber service check
 #' @param host,port of the plumber service
 #' @param path of the plumber service, specify it with `/path`
 #' @param method_plumber healthcheck path
@@ -82,10 +86,14 @@ single_query_plumber <- function(id, host=NULL, port=NULL, path=NULL, method_plu
   })
 }
 
-#' make queries to check whether or not plumbers work
+#' @title create_table_plumber
+#' @name create_table_plumber
+#'
+#' @description make queries to check whether or not plumbers work
 #'
 #' @param file file of yaml with plumbers
-#'
+#' @param is.shiny whether shiny env
+#' @import dplyr
 #' @export
 create_table_plumber <- function(file, is.shiny=F) {
   # prepare the list of services

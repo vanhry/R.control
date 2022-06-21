@@ -2,12 +2,14 @@
 % Please edit documentation in R/golem_utils_server.R
 \name{create_table_plumber}
 \alias{create_table_plumber}
-\title{make queries to check whether or not plumbers work}
+\title{create_table_plumber}
 \usage{
 create_table_plumber(file, is.shiny = F)
 }
 \arguments{
 \item{file}{file of yaml with plumbers}
+
+\item{is.shiny}{whether shiny env}
 }
 \description{
 make queries to check whether or not plumbers work
