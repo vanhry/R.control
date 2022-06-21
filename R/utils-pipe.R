@@ -8,6 +8,7 @@
 #'
 #' @importFrom magrittr %>%
 #' @usage lhs \%>\% rhs
-#' @noRd
+#'
 #' @export
+#'
 NULL
