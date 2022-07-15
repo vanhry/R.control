@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# plumber.control
+## plumber.control
 
 <!-- badges: start -->
 
@@ -12,7 +12,22 @@ status](https://github.com/vanhry/plumber.control/workflows/R-CMD-check/badge.sv
 The goal of plumber.control is to control all of your R plumber
 (actually any http based) services in one place.
 
-## Installation
+# Shiny app
+
+#### Deployment of shiny app
+
+Lightweight version of shiny application based on [R-minimal Docker
+image](https://github.com/r-hub/r-minimal) with simple and secure [Caddy
+server](https://github.com/caddyserver/caddy)
+
+You just need to clone the repo, build the docker, install system
+variables `$HOST` and `$EMAIL`, and run: `docker-compose up -d`
+
+And that’s it\! 🏆
+
+# Package
+
+#### Installation of package
 
 Development version
 

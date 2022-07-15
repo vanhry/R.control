@@ -6,7 +6,8 @@ Authors@R:
            family = "Hrychaniuk",
            role = c("aut", "cre"),
            email = "vanhry@gmail.com")
-Description: This package provides the functionality for managing R plumber services
+Description: This package provides the functionality for managing R plumber services.
+  You can add your http-services and check their status.
 License: MIT + file LICENSE
 Imports: 
     config (>= 0.3.1),
@@ -20,7 +21,8 @@ Imports:
     httr2,
     magrittr,
     purrr,
-    DT
+    DT,
+    emo
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1

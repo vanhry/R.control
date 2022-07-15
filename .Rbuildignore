@@ -1,3 +1,5 @@
+^renv$
+^renv\.lock$
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^data-raw$
@@ -5,7 +7,12 @@ dev_history.R
 ^dev$
 $run_dev.*
 ^README\.Rmd$
+^README\.html
 ^Dockerfile$
 ^Dockerfile\.min$
 ^\.github$
 ^LICENSE\.md$
+^config\.yml
+^Caddyfile
+^docker-compose\.yml
+^\.dockerignore

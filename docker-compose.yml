@@ -1,0 +1,32 @@
+version: "3.7"
+
+services:
+  shiny:
+    # image's name of shiny application builded from
+    # from Dockerfile.min
+    image: hrychaniuk/shinyplumber
+    restart: always
+    expose:
+      - "3838"
+    volumes:
+      - /shinylogs:/var/log/shiny-server
+  caddy:
+    image: caddy:2.3.0-alpine
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./site:/srv
+      - ./log:/var/log/caddy
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - shiny
+    environment:
+      - HOST=${HOST}
+      - EMAIL=${EMAIL}
+volumes:
+  caddy_data:
+  caddy_config:
