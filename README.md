@@ -94,7 +94,7 @@ plumber.control::run_app()
 Build Docker
 
 ``` shell
-docker build . -t user/plumbercontrol_app -f Dockerfile.min
+docker build . -t user/plumbercontrol_app -f Dockerfile
 ```
 
 Project was created using [golem](https://github.com/ThinkR-open/golem)

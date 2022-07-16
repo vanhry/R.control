@@ -1,19 +1,38 @@
-FROM rocker/r-ver:4.0.3
+FROM rhub/r-minimal
 
-RUN apt-get update && apt-get install -y  git-core libcurl4-openssl-dev libgit2-dev libicu-dev libssl-dev libxml2-dev make pandoc pandoc-citeproc zlib1g-dev && rm -rf /var/lib/apt/lists/*
-RUN echo "options(repos = c(CRAN = 'https://cran.rstudio.com/'), download.file.method = 'libcurl', Ncpus = 4)" >> /usr/local/lib/R/etc/Rprofile.site
+RUN apk add --no-cache --update-cache \
+        --repository http://nl.alpinelinux.org/alpine/v3.11/main \
+        autoconf=2.69-r2 \
+        automake=1.16.1-r0 && \
+    # repeat autoconf and automake (under `-t`)
+    # to (auto)remove them after installation
+    installr -d \
+        -t "libsodium-dev curl-dev linux-headers autoconf automake" \
+        -a libsodium \
+        shiny
 
-RUN R -e 'install.packages("remotes")'
-RUN Rscript -e 'remotes::install_version("magrittr",upgrade="never", version = "2.0.2")'
-RUN Rscript -e 'remotes::install_version("yaml",upgrade="never", version = "2.2.1")'
-RUN Rscript -e 'remotes::install_version("purrr",upgrade="never", version = "0.3.4")'
-RUN Rscript -e 'remotes::install_version("shiny",upgrade="never", version = "1.6.0")'
-RUN Rscript -e 'remotes::install_version("config",upgrade="never", version = "0.3.1")'
-RUN Rscript -e 'remotes::install_version("testthat",upgrade="never", version = "3.1.4")'
-RUN Rscript -e 'remotes::install_version("DT",upgrade="never", version = "0.14")'
-RUN Rscript -e 'remotes::install_version("httr2",upgrade="never", version = "0.2.1")'
-RUN Rscript -e 'remotes::install_version("dplyr",upgrade="never", version = "1.0.8")'
-RUN Rscript -e 'remotes::install_version("golem",upgrade="never", version = "0.3.2")'
+RUN installr -d dplyr
+RUN installr -d purrr
+RUN installr -d remotes
+RUN installr -d magrittr
+RUN installr -d yaml
+
+RUN installr -d config
+RUN installr -d DT
+RUN installr -d -t linux-headers testthat
+
+RUN wget https://github.com/jgm/pandoc/releases/download/2.13/pandoc-2.13-linux-amd64.tar.gz && \
+    tar xzf pandoc-2.13-linux-amd64.tar.gz && \
+    mv pandoc-2.13/bin/* /usr/local/bin/ && \
+    rm -rf pandoc-2.13*
+
+RUN installr -d rmarkdown
+
+RUN installr -t "gfortran g++ curl-dev openssl-dev" \
+             -a "libcurl openssl" -d httr2
+
+RUN installr -t "curl-dev openssl-dev libxml2-dev gfortran g++ libgit2" \
+    -a "libcurl libgit2-dev libxml2 openssl" golem
 
 RUN mkdir /build_zone
 ADD . /build_zone
@@ -21,6 +40,5 @@ WORKDIR /build_zone
 RUN R -e 'remotes::install_local(upgrade="never")'
 RUN rm -rf /build_zone
 
-EXPOSE 3939
-
-CMD R -e "options('shiny.port'=3939,shiny.host='0.0.0.0');plumber.control::run_app()"
+EXPOSE 3838
+CMD R -e "options('shiny.port'=3838,shiny.host='0.0.0.0');plumber.control::run_app()"
