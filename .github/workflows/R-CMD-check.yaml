@@ -8,7 +8,8 @@ on:
 
 name: R-CMD-check
 
-env: plumber.control
+env:
+  IMAGE_NAME: plumber.control
 
 jobs:
   R-CMD-check:
