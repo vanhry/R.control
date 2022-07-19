@@ -24,6 +24,12 @@ usethis::use_package("logger")
 usethis::use_package("fs")
 usethis::use_package("tibble")
 usethis::use_package("rlang")
+usethis::use_package("glue")
+usethis::use_package("rvest")
+usethis::use_package("httr")
+usethis::use_package("shinybusy")
+usethis::use_package("stringr")
+usethis::use_package("xml2")
 usethis::use_pipe()
 ## Add modules ----
 ## Create a module infrastructure in R/

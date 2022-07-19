@@ -28,7 +28,7 @@ read_plumbers <- function(file) {
 #' @param scheme http/https
 #'
 #' @noRd
-single_query_plumber <- function(id, host=NULL, port=NULL, path=NULL, method_plumber=NULL, scheme=NULL) {
+single_query_plumber <- function(id, host=NULL, port=NULL, path=NULL, method_plumber=NULL, scheme=NULL, is_shiny_app=NULL) {
   if (is.null(host)) {
     host <- "localhost"
   }
@@ -57,7 +57,12 @@ single_query_plumber <- function(id, host=NULL, port=NULL, path=NULL, method_plu
   url <- httr2::url_build(url)
 
   # create request
-  req <- httr2::request(url)
+  req <- httr2::request(url) %>%
+    httr2::req_method(
+      ifelse(is_shiny_app,
+             "HEAD",
+             "GET")
+    )
 
   # add optional fields
   # if (!purrr::is_empty(headers))
@@ -73,7 +78,8 @@ single_query_plumber <- function(id, host=NULL, port=NULL, path=NULL, method_plu
       id = id,
       status = as.character(res$status_code),
       url = url,
-      result = T
+      result = T,
+      is_shiny_app = is_shiny_app
     ))
   }, error=function(e) {
 
@@ -81,7 +87,8 @@ single_query_plumber <- function(id, host=NULL, port=NULL, path=NULL, method_plu
       id = id,
       status = "404",
       url = url,
-      result = F
+      result = F,
+      is_shiny_app = is_shiny_app
     ))
   })
 }
@@ -136,7 +143,28 @@ create_table_plumber <- function(file, is.shiny=F) {
   res.df <- do.call(rbind.data.frame, params_plumbers)
 
   # change colnames
-  colnames(res.df) <- c("Service","Status", "URL", "result")
+  colnames(res.df) <- c("Service","Status", "URL", "result","is_shiny_app")
 
   return(res.df)
+}
+
+
+#' @description create html status based on status
+#' @param x character of service status
+#'
+#'
+#' @noRd
+color_status <- function(x) {
+  ifelse(startsWith(x,"2"),
+         as.character(shiny::span(x,style='color:green')),
+         as.character(shiny::span(x,style='color:red')))
+}
+
+#' @description prepare Head method
+#' @param url url of head
+#'
+#' @noRd
+head_url <- function(url) {
+  httr2::request(url) %>%
+    httr2::req_method("HEAD")
 }

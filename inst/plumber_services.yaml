@@ -5,6 +5,7 @@ plumber_local:
   path:
   method_plumber: health
   scheme: http
+  is_shiny_app: false
 
 # http://localhost/paysystem/healthcheck
 plumber_paysystem:
@@ -13,3 +14,14 @@ plumber_paysystem:
   path: paysystem
   method_plumber: healthcheck
   scheme: http
+  is_shiny_app: false
+
+shinyserver:
+  host: ec2-34-204-213-135.compute-1.amazonaws.com
+  port: 3838
+  path:
+  method_plumber: ""
+  scheme: http
+  is_shiny_app: true
+
+
