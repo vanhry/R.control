@@ -9,7 +9,7 @@
 #'
 #' @noRd
 app_sys <- function(...) {
-  system.file(..., package = "plumber.control")
+  system.file(..., package = "R.control")
 }
 
 

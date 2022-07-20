@@ -1,4 +1,4 @@
-Package: plumber.control
+Package: R.control
 Title: Management of R plumber services
 Version: 0.0.0.9000
 Authors@R: 

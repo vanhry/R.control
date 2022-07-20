@@ -1,4 +1,4 @@
 library(testthat)
-library(plumber.control)
+library(R.control)
 
-test_check("plumber.control")
+test_check("R.control")

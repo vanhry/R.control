@@ -9,7 +9,7 @@ on:
 name: R-CMD-check
 
 env:
-  IMAGE_NAME: plumber.control
+  IMAGE_NAME: R.control
 
 jobs:
   R-CMD-check:

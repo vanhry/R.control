@@ -13,13 +13,13 @@ knitr::opts_chunk$set(
 )
 ```
 
-## plumber.control
+## R.control
 
 <!-- badges: start -->
-[![R build status](https://github.com/vanhry/plumber.control/workflows/R-CMD-check/badge.svg)](https://github.com/vanhry/plumber.control/actions)
+[![R build status](https://github.com/vanhry/R.control/workflows/R-CMD-check/badge.svg)](https://github.com/vanhry/R.control/actions)
 <!-- badges: end -->
 
-The goal of plumber.control is to control all of your R plumber (actually any http based) services in one place.
+The goal of R.control is to control all of your R plumber (actually any http based) services in one place.
 
 # Shiny app
 
@@ -39,17 +39,17 @@ And that's it! `r emo::ji("contest")`
 Development version
 
 ``` R
-remotes::install_github("vanhry/plumber.control")
+remotes::install_github("vanhry/R.control")
 ```
 
 ``` {r}
-library(plumber.control)
+library(R.control)
 ```
 
 If you want to use this library you must create `yaml` file of your plumber services
 
 ``` yaml
-`r xfun::file_string(system.file("plumber_services.yaml",package="plumber.control"))`
+`r xfun::file_string(system.file("plumber_services.yaml",package="R.control"))`
 ```
 
 Add to your `plumber.R` file **/healthcheck** method
@@ -65,13 +65,13 @@ function(res) {
 You can use `create_table_plumber("path/to/file")` to receive the table of all services
 
 ```{r}
-data <- create_table_plumber(system.file("plumber_services.yaml",package="plumber.control"))
+data <- create_table_plumber(system.file("plumber_services.yaml",package="R.control"))
 data
 ```
 
 Also it's possible to use shiny application with:
 ```r
-plumber.control::run_app()
+R.control::run_app()
 ```
 ![Shiny app screen](inst/imageapp3.png)
 
