@@ -50,6 +50,7 @@ plumber_local:
   path:
   method_plumber: health
   scheme: http
+  is_shiny_app: false
 
 # http://localhost/paysystem/healthcheck
 plumber_paysystem:
@@ -58,6 +59,23 @@ plumber_paysystem:
   path: paysystem
   method_plumber: healthcheck
   scheme: http
+  is_shiny_app: false
+
+shinyserver:
+  host: shiny.john-coene.com
+  port:
+  path:
+  method_plumber: ""
+  scheme: https
+  is_shiny_app: true
+
+one_app_shinyserver:
+  host: vanhryshinyserver.xyz
+  port:
+  path:
+  method_plumber: ""
+  scheme: https
+  is_shiny_app: true
 ```
 
 Add to your `plumber.R` file **/healthcheck** method
@@ -78,9 +96,11 @@ services
 ``` r
 data <- create_table_plumber(system.file("plumber_services.yaml",package="plumber.control"))
 data
-#>              Service Status                                    URL result
-#> 2      plumber_local    404           http://localhost:7055/health  FALSE
-#> 21 plumber_paysystem    404 http://localhost/paysystem/healthcheck  FALSE
+#>                Service Status                                    URL result is_shiny_app
+#> 2        plumber_local    404           http://localhost:7055/health  FALSE        FALSE
+#> 21   plumber_paysystem    404 http://localhost/paysystem/healthcheck  FALSE        FALSE
+#> 3          shinyserver    200          https://shiny.john-coene.com/   TRUE         TRUE
+#> 4  one_app_shinyserver    200         https://vanhryshinyserver.xyz/   TRUE         TRUE
 ```
 
 Also it’s possible to use shiny application with:
@@ -89,7 +109,12 @@ Also it’s possible to use shiny application with:
 plumber.control::run_app()
 ```
 
-![Shiny app screen](inst/shiny_app_image.png)
+![Shiny app screen](inst/imageapp3.png)
+
+If click on Details for shiny server, it will open the modal with each
+service
+
+![Shiny apps](inst/imageapp2.png)
 
 Build Docker
 

@@ -17,11 +17,17 @@ plumber_paysystem:
   is_shiny_app: false
 
 shinyserver:
-  host: ec2-34-204-213-135.compute-1.amazonaws.com
-  port: 3838
+  host: shiny.john-coene.com
+  port:
   path:
   method_plumber: ""
-  scheme: http
+  scheme: https
   is_shiny_app: true
 
-
+one_app_shinyserver:
+  host: vanhryshinyserver.xyz
+  port:
+  path:
+  method_plumber: ""
+  scheme: https
+  is_shiny_app: true

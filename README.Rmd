@@ -73,7 +73,11 @@ Also it's possible to use shiny application with:
 ```r
 plumber.control::run_app()
 ```
-![Shiny app screen](inst/shiny_app_image.png)
+![Shiny app screen](inst/imageapp3.png)
+
+If click on Details for shiny server, it will open the modal with each service
+
+![Shiny apps](inst/imageapp2.png)
 
 Build Docker
 ```shell
