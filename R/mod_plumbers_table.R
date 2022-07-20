@@ -63,11 +63,11 @@ mod_plumbers_table_server <- function(id){
       output$plumbers_table <- DT::renderDataTable({
         # add colors to Status
         services$Status <- as.character(services$Status) %>%
-          purrr::map_chr( ~ color_status(x))
+          purrr::map_chr(color_status)
         # add links to URL
         services$URL <- purrr::map_chr(services$URL,
                                        ~ paste0("<a href='",.,"'>",.,"</a>"))
-        DT::datatable(services %>% dplyr::select(-c("result", "is_shiny_app")),
+        DT::datatable(services %>% dplyr::select(-c("index", "result", "is_shiny_app")),
                       escape = FALSE,
                       selection = "none",
                       options = list(pageLength = 10,
@@ -131,7 +131,7 @@ mod_plumbers_table_server <- function(id){
 
         # prepare names
         values <- list_res %>% as.character() %>%
-          purrr::map_chr( ~ color_status(x))
+          purrr::map_chr(color_status)
 
         shinyapps <- names(list_res)
         new_data <- data.frame(`Shiny apps` = shinyapps,
